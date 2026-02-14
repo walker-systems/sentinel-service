@@ -1,16 +1,35 @@
-# Compiled class file
-*.class
+# --- Maven ---
+target/
+!.mvn/wrapper/maven-wrapper.properties
+dependency-reduced-pom.xml
 
-# Log file
-*.log
+# --- IntelliJ IDEA ---
+.idea
+*.iws
+*.iml
+*.ipr
+out/
 
-# BlueJ files
-*.ctxt
+# --- Eclipse ---
+.classpath
+.project
+.settings/
+bin/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# --- Visual Studio Code ---
+.vscode/
 
-# Package Files #
+# --- macOS / Windows System Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Java Crash Logs ---
+hs_err_pid*
+replay_pid*
+
+# --- Package Files ---
 *.jar
 *.war
 *.nar
@@ -18,13 +37,3 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
