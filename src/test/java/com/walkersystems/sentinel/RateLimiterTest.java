@@ -23,16 +23,12 @@ public class RateLimiterTest {
     @BeforeEach
     public void setup() {
         redisTemplate.execute(conn -> conn.serverCommands().flushAll())
-                .blockLast();
+                .blockLast(); // Make sure data is cleared before running next test
 
     }
 
     @Test
     public void testAllowedRequest() {
-
-        int refill = 0;
-        int capacity = 10;
-        int requested = 1;
 
         StepVerifier.create(rateLimiterService.isAllowed("test_user", CAPACITY, REFILL_RATE, REQUEST_COST))
                 .expectNext(true)
