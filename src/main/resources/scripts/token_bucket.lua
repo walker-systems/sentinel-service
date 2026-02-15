@@ -1,31 +1,36 @@
-local key = KEYS[1]                     -- ID of bucket
-local rate = tonumber(ARGV[1])          -- Tokens refilled per second
-local capacity = tonumber(ARGV[2])      -- Max tokens per bucket
-local now = tonumber(ARGV[3])           -- Time in seconds (Unix epoch)
-local requested = tonumber(ARGV[4])     -- Requested tokens (usually 1)
+local key = KEYS[1]                             -- ID of bucket
+local token_refill_rate = tonumber(ARGV[1])     -- Tokens refilled per second
+local token_capacity = tonumber(ARGV[2])        -- Max tokens per bucket
+local time_now = tonumber(ARGV[3])              -- Time in seconds (Unix epoch)
+local tokens_requested = tonumber(ARGV[4])      -- Requested tokens (usually 1)
 
-local info = redis.call("HMGET", key, "tokens", "last_refill")
-local tokens = tonumber(info[1])
-local last_refill = tonumber(info[2])
+-- Calculate tokens owed
+local current_info = redis.call("HMGET", key, "current_tokens", "time_of_last_refill")
+local current_tokens = tonumber(current_info[1])
+local time_of_last_refill = tonumber(current_info[2])
 
-if tokens == nil then
-    token = capacity
-    last_refill = now
+if current_tokens == nil then
+    current_tokens = token_capacity
+    time_of_last_refill = time_now
 end
 
-local delta = math.max(0, now - last_refill)
-local filled_tokens = math.min(capacity, tokens + (delta * rate))
+local time_delta_seconds = math.max(0, time_now - time_of_last_refill)
+local tokens_owed = time_delta_seconds * token_refill_rate
 
-local allowed = false
-local remaining = filled_tokens
+-- Replenish current balance with owed tokens
+current_tokens = math.min(token_capacity, current_tokens + tokens_owed)
 
-if filled_tokens >= requested then
-    allowed = true
-    remaining = filled_tokens - requested
-    redis.call("HMSET", key, "tokens", remaining, "last_refill", now)
+-- Process the request
+local can_afford_request = false
+
+--
+if current_tokens >= tokens_requested then
+    can_afford_request = true
+    current_tokens = current_tokens - tokens_requested
+    redis.call("HMSET", key, "current_tokens", current_tokens, "time_of_last_refill", time_now)
     redis.call("EXPIRE", key, 3600)
 else
-    allowed = false
+    can_afford_request = false
 end
 
-return { allowed and 1 or 0, remaining }
+return { can_afford_request and 1 or 0, current_tokens }
