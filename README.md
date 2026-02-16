@@ -136,6 +136,27 @@ kubectl get pods
 curl http://localhost/check
 ```
 
+## ☁️ Cloud Deployment (AWS)
+
+The Sentinel Service is designed to be cloud-agnostic but is currently deployed on **AWS EC2** for production demonstration.
+
+**Infrastructure Architecture:**
+* **Compute:** AWS EC2 Instance (Ubuntu Linux 24.04 LTS).
+* **Networking:** Configured VPC Security Groups to allow public HTTP traffic (Port 80) while restricting SSH (Port 22) to specific IPs.
+* **Deployment:** Containerized deployment using Docker via SSH tunnel.
+
+**Deployment Command:**
+Once connected to the remote AWS instance via SSH, the service is deployed with a single command pulling from the public registry:
+
+```bash
+# Runs on the standard HTTP port (80) exposed to the public internet
+docker run -d \
+  -p 80:8080 \
+  --name sentinel \
+  --network sentinel-net \
+  -e SPRING_DATA_REDIS_HOST=redis \
+  justinwalkerhub/sentinel-service:latest
+```
 ---
 
 ### 👤 Justin Walker
