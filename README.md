@@ -2,7 +2,7 @@
 
 > A high-performance, distributed rate limiting microservice built with Spring Boot WebFlux and Redis.
 
-![Java](https://img.shields.io/badge/Java-21-orange?style=flat-square)
+![Java](https://img.shields.io/badge/Java-25-orange?style=flat-square)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0.2-green?style=flat-square)
 ![Redis](https://img.shields.io/badge/Redis-Distributed-red?style=flat-square)
 ![Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen?style=flat-square)
@@ -47,7 +47,7 @@ services:
 ## 👩🏻‍💻 Development Setup
 
 **Prerequisites**
-* JDK 21+
+* JDK 25+
 * Docker (for Redis)
 
 1. Start Redis
