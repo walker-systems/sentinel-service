@@ -20,7 +20,7 @@ extremely detrimental - one user using a 'bot' for spamming bids (perhaps, tiny 
 can shut out competition from rule-abiding users. 
 
 To solve these two problems, we will give every user a 'budget' of requests
-per second. Once they exceed this budget, their requests are dropped, saving resources for good-faith users. To facilitate
+per second. Once they exceed this budget, their requests are dropped. To facilitate
 the best possible performance while solving these problems, we will design the server to be a distributed system, with Redis
 acting as the central "counter". The servers all consult Redis when they need to know the remaining bid 'tokens' a user has,
 keeping an accurate global count for each user's limit. 
@@ -39,7 +39,7 @@ vs allowed requests, and Prometheus will scrape an Actuator endpoint every few s
 rendering the site inactive) to preserve continuity - there's no reason to visit a worst-case scenario upon ourselves just
 because of a failure in the protection mechanism. 
 * **Non-Goal:** User authentication will be handled by Gateway/Identity provider. We assume that validation/authentication
-has been handled by the time a request reaches the Limiter. The Limiter is essentially a 'traffic cop', not a 'security checkpoint'. 
+has been handled by the time a request reaches the Limiter. The Limiter is essentially a 'traffic light', not a 'security checkpoint'. 
 
 ## 4. Proposed Solution
 * The Token Bucket Algorithm is perfectly suited for the task of regulating requests. 
