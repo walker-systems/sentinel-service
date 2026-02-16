@@ -123,6 +123,9 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<image>
+						<name>docker.io/justinwalkerhub/sentinel-service:latest</name>
+					</image>
 				</configuration>
 			</plugin>
 			<plugin>
