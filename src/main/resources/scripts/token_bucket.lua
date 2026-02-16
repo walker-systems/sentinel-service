@@ -1,8 +1,8 @@
 local key = KEYS[1]                             -- ID of bucket
 local token_refill_rate = tonumber(ARGV[1])     -- Tokens refilled per second
-local token_capacity = tonumber(ARGV[2])        -- Max tokens per bucket
-local time_now = tonumber(ARGV[3])              -- Time in seconds (Unix epoch)
-local tokens_requested = tonumber(ARGV[4])      -- Requested tokens (usually 1)
+local token_capacity = tonumber(ARGV[2])        -- Max per bucket
+local time_now = tonumber(ARGV[3])              -- In seconds (Unix epoch)
+local tokens_requested = tonumber(ARGV[4])      -- For this request (usually 1)
 
 -- Calculate tokens owed
 local current_info = redis.call("HMGET", key, "current_tokens", "time_of_last_refill")

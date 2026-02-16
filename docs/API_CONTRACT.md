@@ -5,7 +5,7 @@ The Sentinel Rate Limiter Service acts as an internal barrier between authorizat
 It enforces request quotas using the IETF Draft Standard for Rate Limit Headers, which provides 
 compatibility with automated clients and prevents "Thundering Herd" scenarios through 
 delta-second reset windows (as opposed to absolute timestamps). The Rate Limiter is built as a distributed system to 
-facilitate a global request counter across different servers. 
+facilitate monitoring requests across different servers. 
 
 ## 2. Request Identification
 Every request must identify the client so that the correct bucket is checked/updated.
@@ -17,7 +17,7 @@ Every request must identify the client so that the correct bucket is checked/upd
 
 **Note:** If `X-Forwarded-For` is missing, the system will fall back to the TCP connection IP.
 
-## 3. Response Headers (The Protocol)
+## 3. Response Headers 
 Sentinel communicates quota status via the `RateLimit` header field.
 
 ### 3.1 The "RateLimit" Header
