@@ -121,6 +121,21 @@ end
 return { can_afford_request and 1 or 0, current_tokens }
 ```
 
+## ☸️ Kubernetes Deployment
+
+Deploy to a local cluster (Minikube, Docker Desktop) or cloud provider:
+
+```bash
+# 1. Apply configurations
+kubectl apply -f k8s/
+
+# 2. Check status
+kubectl get pods
+
+# 3. Access the service (Docker Desktop/Localhost)
+curl http://localhost/check
+```
+
 ---
 
 ### 👤 Justin Walker
