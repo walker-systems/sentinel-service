@@ -159,14 +159,14 @@ docker run -d \
 ```
 ---
 
-### 👤 Justin Walker
+---
 
-* 🌐 [GitHub Profile](https://github.com/walker-systems)
-* 💼 [LinkedIn](https://www.linkedin.com/in/justin-castillo-69351198/)
+## 📬 Let's Connect
 
-### 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+**Justin Walker**
+* 📧 **Email:** [justinwalker.contact@gmail.com](mailto:justinwalker.contact@gmail.com)
+* 💼 **LinkedIn:** [Justin Walker](https://www.linkedin.com/in/justin-walker-0403923b1/)
+* 🌐 **Portfolio:** [justin-castillo.github.io](https://justin-castillo.github.io/)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Java%20%26%20Redis-blue?style=for-the-badge" alt="Made with Love">
